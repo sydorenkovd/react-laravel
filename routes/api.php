@@ -16,27 +16,22 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('products', function () {
-    return response(['Product 1', 'Product 2', 'Product 3'],200);
-});
+/**
+ **Basic Routes for a RESTful service:
+ **Route::get($uri, $callback);
+ **Route::post($uri, $callback);
+ **Route::put($uri, $callback);
+ **Route::delete($uri, $callback);
+ **
+ */
 
-Route::get('products/{product}', function ($productId) {
-    return response()->json(['productId' => "{$productId}"], 200);
-});
 
+Route::get('products', 'ProductsController@index');
 
-Route::post('products', function() {
-    return  response()->json([
-        'message' => 'Create success'
-    ], 201);
-});
+Route::get('products/{product}', 'ProductsController@show');
 
-Route::put('products/{product}', function() {
-    return  response()->json([
-        'message' => 'Update success'
-    ], 200);
-});
+Route::post('products','ProductsController@store');
 
-Route::delete('products/{product}',function() {
-    return  response()->json(null, 204);
-});
+Route::put('products/{product}','ProductsController@update');
+
+Route::delete('products/{product}', 'ProductsController@delete');
