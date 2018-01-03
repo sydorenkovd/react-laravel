@@ -21,7 +21,7 @@ const Product = ({product}) => {
             <p> {product.description} </p>
             <h3> Status {product.availability ? 'Available' : 'Out of stock'} </h3>
             <h3> Price : {product.price} </h3>
-
+            <button className="btn btn-default" >удалить</button>
         </div>
     )
 }
